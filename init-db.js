@@ -38,7 +38,7 @@ db.schedule.insertMany([
     id: 1,
     candidate: 1,
     employees: [1, 2],
-    date: Date("2023-02-14"),
+    date: new Date("2023-02-14").toISOString(),
     slot: 1,
     status: false,
   },

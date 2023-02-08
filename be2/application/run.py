@@ -70,42 +70,43 @@ def home_page():
     if request.method == 'GET':
        
         
-        # collection.update_many({}, [{'$set': {'date': {'$toDate': '$date'}}}])
+        collection.update_many({}, [{'$set': {'date': {'$toDate': '$date'}}}])
        
         
-        # result = collection.aggregate([
-        #     {
-        #         '$lookup': {'from': 'employee', 'localField': 'employees', 'foreignField': '_id', 'as': 'employees'}
-        #     },
-        #     {
-        #         "$lookup": {'from': 'candidate', 'localField': 'candidate', 'foreignField': '_id', 'as': 'candidate'}
-        #     },
-        #     {
-        #         "$project": {
-        #             "_id": 0,
-        #             "interview_id": 1,
-        #             "employees": ["$employees.e_id", "$employees.e_name"],
-        #             "candidate": ["$candidate.c_id", "$candidate.c_name"],
-        #             # "date": {"Year": {"$year": "$date"},
-        #             #          "Month": {"$month": "$date"},
-        #             #          "Day": {"$dayOfMonth": "$date"}
-        #             #          },
-        #             "slot": 1,
-        #             "status": 1
-        #         }
-        #     }
-        # ])
-        # interview_slots = []
-        # for c in result:
-        #     interview_slots.append(dict(c))
-
-        # for interview in interview_slots:
-        #     interview['employees'] = list(
-        #         map(lambda x: {"id": x[0], "name": x[1]}, zip(interview['employees'][0], interview['employees'][1])))
-        #     interview['candidate'] = {"id": interview['candidate'][0][0], "name": interview['candidate'][1][0]}
-        # response = jsonify(interview_slots)
-        # response.headers.add('Access-Control-Allow-Origin', '*')
-        # return response
+        result = collection.aggregate([
+            {
+                '$lookup': {'from': 'employee', 'localField': 'employees', 'foreignField': 'e_id', 'as': 'employees'}
+            },
+            {
+                "$lookup": {'from': 'candidate', 'localField': 'candidate', 'foreignField': 'c_id', 'as': 'candidate'}
+            },
+            {
+                "$project": {
+                    "_id": 0,
+                    "interview_id": 1,
+                    "employees": ["$employees.e_id", "$employees.e_name"],
+                    "candidate": [["$candidate.c_id", "$candidate.c_name"]],
+                    # "date": {"Year": {"$year": "$date"},
+                    #          "Month": {"$month": "$date"},
+                    #          "Day": {"$dayOfMonth": "$date"}
+                    #          },
+                    "slot": 1,
+                    "status": 1
+                }
+            }
+        ])
+        interview_slots = []
+        for c in result:
+            interview_slots.append(dict(c))
+        print()
+        print(interview_slots)
+        for interview in interview_slots:
+            interview['employees'] = list(
+                map(lambda x: {"id": x[0], "name": x[1]}, zip(interview['employees'][0], interview['employees'][1])))
+            interview['candidate'] = {"id": interview['candidate'][0][0], "name": interview['candidate'][0][1]}
+        response = jsonify(interview_slots)
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
         
         
         return jsonify(dummy)
