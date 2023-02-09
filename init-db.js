@@ -35,7 +35,7 @@ db.candidate.insertMany([
 
 db.schedule.insertMany([
   {
-    id: 1,
+    interview_id: 1,
     candidate: 1,
     employees: [1, 2],
     date: new Date("2023-02-14").toISOString(),
