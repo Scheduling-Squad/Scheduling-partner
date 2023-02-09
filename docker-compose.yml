@@ -22,8 +22,8 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=pass
     volumes:
       - ./init-db.js:/docker-entrypoint-initdb.d/init-db.js:ro
-      - persistent:/data/db
+      - persistent4:/data/db
     ports:
       - "27017:27017"
 volumes:
-  persistent:
+  persistent4:
