@@ -11,6 +11,8 @@ services:
     build: ./be2/
     ports:
       - "5000:5000"
+    volumes:
+      - ./be2/:/code
     expose:
       - "5000"
   db:

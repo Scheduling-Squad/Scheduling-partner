@@ -13,54 +13,7 @@ client = get_client()
 #database_names = client.list_database_names()
 db = client["interview"]
 collection = db['schedule']
-dummy = [
-  {
-    "date": {
-      "year": 2002,
-      "month": 12,
-      "day": 4
-    },
-    "interview_id": 1,
-    "slot": 1,
-    "employees": [
-      {
-        "id": 1,
-        "name": "Selva"
-      },
-      {
-        "id": 2,
-        "name": "Thiru"
-      }
-    ],
-    "candidate": {
-      "id": 1,
-      "name": "Ram"
-    }
-  },
-  {
-    "date": {
-      "year": 2002,
-      "month": 12,
-      "day": 4
-    },
-    "interview_id": 2,
-    "slot": 2,
-    "employees": [
-      {
-        "id": 1,
-        "name": "Selva"
-      },
-      {
-        "id": 3,
-        "name": "Sai karthik"
-      }
-    ],
-    "candidate": {
-      "id": 2,
-      "name": "Shankar"
-    }
-  }
-]
+
 
 CORS(app)
 
@@ -108,8 +61,6 @@ def home_page():
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
         
-        
-        return jsonify(dummy)
     # DELETE a interview slot
     if request.method == 'DELETE':
         body = request.json
@@ -121,4 +72,4 @@ def home_page():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0',debug=True)
