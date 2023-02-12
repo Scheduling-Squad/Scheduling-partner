@@ -8,11 +8,11 @@ services:
     expose:
       - "80"
   api:
-    build: ./be2/
+    build: ./backend/
     ports:
       - "5000:5000"
     volumes:
-      - ./be2/:/code
+      - ./backend/:/code
     expose:
       - "5000"
   db:
