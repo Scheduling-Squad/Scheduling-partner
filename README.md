@@ -17,7 +17,7 @@ Frontend - Angular<br />
 Backend - Flask(live reload enabled)<br />
 Database - MongoDB<br />
 
-All three components run as a docker app(multi-container)
-
-![alt text](https://github.com/Scheduling-Squad/Scheduling-partner/blob/main/snipping%20tool.PNG)
+All three components run as a docker app(multi-container)<br />
+[Click here to see the experimantal version of this project that uses an Nginx reverse proxy and a load balancer between the client and api](https://github.com/selvakannanjr/LBExp)
+![Sample Screenshot](https://github.com/Scheduling-Squad/Scheduling-partner/blob/main/snipping%20tool.PNG)
 
