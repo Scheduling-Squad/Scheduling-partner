@@ -40,7 +40,7 @@ all available interviews are returned
 the data is returned in JSON format
 
 
-### 2. iterview/id:
+### 2. interview/id:
 
 send a GET request to
 ```
